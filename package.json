@@ -1,0 +1,56 @@
+{
+  "name": "loadbearing",
+  "version": "0.1.0",
+  "description": "Profile your CLAUDE.md / AGENTS.md by what it actually costs and what it actually changes — see which sections earn their tokens, with the noise floor shown so you can trust the number.",
+  "type": "module",
+  "bin": {
+    "loadbearing": "dist/cli.js"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test --import tsx test/*.test.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "claude-code",
+    "agents-md",
+    "claude-md",
+    "context",
+    "tokens",
+    "cost",
+    "ablation",
+    "ai",
+    "llm",
+    "agent",
+    "profiler"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "author": "webcoderspeed"
+}

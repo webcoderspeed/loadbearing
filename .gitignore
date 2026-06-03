@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.log
+loadbearing-report.html
+loadbearing-report.json
+*.trimmed.md
+.DS_Store
+*.tgz

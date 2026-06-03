@@ -1,0 +1,13 @@
+{
+  "contextFile": "CLAUDE.md",
+  "model": "sonnet",
+  "trials": 5,
+  "budgetUsd": 4.0,
+  "fixtures": [
+    {
+      "name": "implement-create-task",
+      "prompt": "Implement the createTask use-case in src/application/create-task.ts so all tests in test/create-task.test.ts pass. Follow the project's DDD layering, API envelope, DTO, error-handling, and naming conventions. Run 'node --test --import tsx test/create-task.test.ts' to verify. Do not modify any test file.",
+      "verifyCmd": "node --test --import tsx test/create-task.test.ts"
+    }
+  ]
+}

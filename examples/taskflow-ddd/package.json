@@ -1,0 +1,12 @@
+{
+  "name": "taskflow-demo",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "node --test --import tsx test/create-task.test.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
