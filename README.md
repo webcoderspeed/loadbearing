@@ -1,5 +1,9 @@
 # loadbearing
 
+[![npm](https://img.shields.io/npm/v/loadbearing.svg)](https://www.npmjs.com/package/loadbearing)
+[![license](https://img.shields.io/npm/l/loadbearing.svg)](./LICENSE)
+[![node](https://img.shields.io/node/v/loadbearing.svg)](https://nodejs.org)
+
 **Measure which sections of your `CLAUDE.md` / `AGENTS.md` actually change your agent's behavior — and which silently cost tokens or even make it *worse* — with the measurement noise floor shown, so you know when to trust the result and when you can't.**
 
 Big, shared, long-lived context files drift. A section added a year ago may now do nothing — or actively *reduce* task success, as multiple 2025–2026 studies on agent context files have found. Static linters only **guess** from text. loadbearing **runs your real tasks** with the full context and with each section removed, and reports what measurably changed.
@@ -143,6 +147,17 @@ const report = profile({
 });
 ```
 
+## Status
+
+Early (v0.1). The Claude Code adapter is the most battle-tested path; Codex/Aider
+adapters are stubbed behind a small interface. Results are specific to your repo,
+task suite, and model version — re-run after model upgrades. Issues and PRs welcome.
+
+## Links
+
+- Repo: https://github.com/webcoderspeed/loadbearing
+- Worked example: [`examples/taskflow-ddd/`](examples/taskflow-ddd)
+
 ## License
 
-MIT
+MIT © [webcoderspeed](https://github.com/webcoderspeed)
