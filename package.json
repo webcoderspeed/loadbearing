@@ -30,21 +30,36 @@
   },
   "keywords": [
     "claude-code",
+    "claude",
     "agents-md",
     "claude-md",
-    "context",
-    "tokens",
-    "cost",
-    "ablation",
+    "anthropic",
     "ai",
     "llm",
+    "ai-agents",
     "agent",
-    "profiler"
+    "context",
+    "context-engineering",
+    "prompt-engineering",
+    "tokens",
+    "token-optimization",
+    "cost",
+    "ablation",
+    "profiler",
+    "cli"
   ],
   "engines": {
     "node": ">=18"
   },
   "license": "MIT",
+  "homepage": "https://github.com/webcoderspeed/loadbearing#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webcoderspeed/loadbearing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/webcoderspeed/loadbearing/issues"
+  },
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^22.10.0",
