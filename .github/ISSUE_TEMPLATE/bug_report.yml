@@ -1,0 +1,27 @@
+name: Bug report
+description: Something isn't working
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Include the command you ran and your loadbearing.json if relevant.
+      render: shell
+  - type: input
+    id: version
+    attributes:
+      label: loadbearing version
+      placeholder: 0.1.0
+  - type: input
+    id: env
+    attributes:
+      label: Node version / OS / agent (Claude Code version)
+      placeholder: Node 22, macOS 15, Claude Code 2.1.x

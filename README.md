@@ -1,6 +1,7 @@
 # loadbearing
 
 [![npm](https://img.shields.io/npm/v/loadbearing.svg)](https://www.npmjs.com/package/loadbearing)
+[![CI](https://github.com/webcoderspeed/loadbearing/actions/workflows/ci.yml/badge.svg)](https://github.com/webcoderspeed/loadbearing/actions/workflows/ci.yml)
 [![license](https://img.shields.io/npm/l/loadbearing.svg)](./LICENSE)
 [![node](https://img.shields.io/node/v/loadbearing.svg)](https://nodejs.org)
 
