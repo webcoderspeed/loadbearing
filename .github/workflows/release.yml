@@ -3,6 +3,7 @@ name: Release
 on:
   push:
     branches: [master]
+  workflow_dispatch: # allow manually re-running the publish if a release tag already exists
 
 permissions:
   contents: write
@@ -17,11 +18,15 @@ jobs:
       - uses: googleapis/release-please-action@v4
         id: release
         with:
-          release-type: node
+          # Manifest mode: honour release-please-config.json (incl. the
+          # pre-1.0 bump rules). Do NOT also pass `release-type` here — that
+          # switches to simple mode and ignores the config file.
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
 
   publish:
     needs: release-please
-    if: ${{ needs.release-please.outputs.release_created == 'true' }}
+    if: ${{ needs.release-please.outputs.release_created == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -33,6 +38,9 @@ jobs:
           node-version: 22
           registry-url: https://registry.npmjs.org
           cache: npm
+      # Trusted publishing (OIDC) requires npm >= 11.5.1; Node 22 ships npm 10.x,
+      # which silently 404s on publish. Upgrade before publishing.
+      - run: npm install -g npm@latest
       - run: npm ci
       - run: npm run build
       # Trusted publishing: no NPM_TOKEN. --provenance passed defensively
