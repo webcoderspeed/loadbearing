@@ -3,6 +3,12 @@ name: Release
 on:
   push:
     branches: [master]
+  workflow_dispatch: # manually re-run the publish for an existing release tag
+    inputs:
+      tag:
+        description: Release tag to publish (e.g. v0.1.0). Manual runs publish exactly this tag.
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -17,22 +23,33 @@ jobs:
       - uses: googleapis/release-please-action@v4
         id: release
         with:
-          release-type: node
+          # Manifest mode: honour release-please-config.json (incl. the
+          # pre-1.0 bump rules). Do NOT also pass `release-type` here — that
+          # switches to simple mode and ignores the config file.
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
 
   publish:
     needs: release-please
-    if: ${{ needs.release-please.outputs.release_created == 'true' }}
+    if: ${{ needs.release-please.outputs.release_created == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
       id-token: write # required for npm trusted publishing (OIDC) + provenance
     steps:
       - uses: actions/checkout@v4
+        with:
+          # On manual runs publish the selected release tag — never an arbitrary
+          # branch/ref that happened to trigger the dispatch.
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org
           cache: npm
+      # Trusted publishing (OIDC) requires npm >= 11.5.1; Node 22 ships npm 10.x,
+      # which silently 404s on publish. Upgrade before publishing.
+      - run: npm install -g npm@latest
       - run: npm ci
       - run: npm run build
       # Trusted publishing: no NPM_TOKEN. --provenance passed defensively
